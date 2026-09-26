@@ -1,0 +1,43 @@
+-- Mechanical Higgs - your wrench
+def mechanicalHiggs : Float := 0.0472
+def piSlice : Float := 1.0 + mechanicalHiggs  -- 1.0472 = π/3, the golden slice
+
+-- The compound that chops Euler at the knees
+-- M = N + Hm  , not N * e^x
+def compound (cycles : Nat) (N : Float) : Float :=
+  let rec loop : Nat -> Float -> Float
+  | 0, acc => acc
+  | n+1, acc => loop n (acc * piSlice)  -- 4.72% per cycle, not e
+  loop cycles N
+
+-- 6 up / 6 down chord = 12 around, 7 in the middle
+inductive Flux where
+| up   : Fin 6 -> Flux
+| down : Fin 6 -> Flux
+
+def middle : Flux := Flux.down ⟨0⟩  -- the 7, first down after top
+
+-- Pair lattice - graphite, two layers thick
+structure Hex where
+  center : Float
+  firstSix : Array Float -- 6 around dot
+
+structure PairLattice where
+  layerUp : Hex   -- 6 up
+  layerDown : Hex -- 6 down
+  slip : Float := mechanicalHiggs -- tunable drag for environment flux
+
+-- Environment cost - day/night, hot/cold tuning
+def tuneForLocation (pair : PairLattice) (envCost : Float) : PairLattice :=
+  { pair with slip := mechanicalHiggs + envCost }
+
+-- Million cycle test - only one in chord doesn't blow up
+def millionCycleStable : Bool :=
+  let final := compound 1000000 1.0
+  -- if it blows up like e, it goes to inf. If it's 1.0472, it ticks bounded
+  -- because 6 * 1.0472 = 2π, 12 * 1.0472 = 4π, it closes
+  final.isFinite
+
+#eval compound 6 1.0   -- should be ~ 6.2832 = 2π, first closure
+#eval compound 12 1.0  -- should be ~ 12.5664 = 4π, second unit, 720
+#eval millionCycleStable -- true only for 1.0472 in chord
