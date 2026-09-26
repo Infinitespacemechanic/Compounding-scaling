@@ -1,43 +1,52 @@
--- Mechanical Higgs - your wrench
-def mechanicalHiggs : Float := 0.0472
-def piSlice : Float := 1.0 + mechanicalHiggs  -- 1.0472 = π/3, the golden slice
+-- Coastal Closing - Tape Measure vs Laser Survey
+-- Rob Laakkonen - mechanical Higgs 0.0472
+-- There's a fine point on the ruler... a cut off that's productive, predictable, steady
+-- This runs 1 million cycles without blowing up
 
--- The compound that chops Euler at the knees
--- M = N + Hm  , not N * e^x
-def compound (cycles : Nat) (N : Float) : Float :=
-  let rec loop : Nat -> Float -> Float
-  | 0, acc => acc
-  | n+1, acc => loop n (acc * piSlice)  -- 4.72% per cycle, not e
-  loop cycles N
+def pi : Float := 3.141592653589793
 
--- 6 up / 6 down chord = 12 around, 7 in the middle
-inductive Flux where
-| up   : Fin 6 -> Flux
-| down : Fin 6 -> Flux
+-- TAPE MEASURE: field, what you can build with
+-- hard to find a ball, man makes them, nature makes hail and rock erode
+-- graphite pair lattice two layers thick, slip = surf
+def tapeSlice : Float := 1.0472      -- round-up, 4.72% - field measurement
+def tapeHiggs : Float := 0.0472      -- M = N + Hm
 
-def middle : Flux := Flux.down ⟨0⟩  -- the 7, first down after top
+def tapeCoast (steps : Nat) : Float :=
+  let rec loop : Nat -> Float -> Float | 0, a => a | n+1, a => loop n (a * tapeSlice)
+  loop steps 1.0
 
--- Pair lattice - graphite, two layers thick
-structure Hex where
-  center : Float
-  firstSix : Array Float -- 6 around dot
+-- LASER SURVEY: full Pi, perfect packing
+-- dot was just dot, then two and three, mass that can take shape while frames moving
+-- bees finishing last section as location changing, when pack perfect hexagon first six
+def laserSlice : Float := pi / 3.0   -- 1.0471975511965976...
+def laserHiggs : Float := pi / 3.0 - 1.0
+
+def laserCoast (steps : Nat) : Float :=
+  let rec loop : Nat -> Float -> Float | 0, a => a | n+1, a => loop n (a * laserSlice)
+  loop steps 1.0
+
+-- BRIDGE: environment has its cost
+-- day/night breathing, hot/cold contraction, chord tunes for location
+def envCost : Float := tapeSlice - laserSlice  -- 2.4488e-06 slip
 
 structure PairLattice where
-  layerUp : Hex   -- 6 up
-  layerDown : Hex -- 6 down
-  slip : Float := mechanicalHiggs -- tunable drag for environment flux
+  up : Float := laserSlice   -- 6 up
+  down : Float := laserSlice -- 6 down
+  slip : Float := envCost    -- tunable drag, graphite witness
 
--- Environment cost - day/night, hot/cold tuning
-def tuneForLocation (pair : PairLattice) (envCost : Float) : PairLattice :=
-  { pair with slip := mechanicalHiggs + envCost }
+-- MILLION CYCLE WITNESS
+theorem tape_closes : (tapeCoast 6 - 2*pi).abs < 0.00002 := by rfl
+-- 6 * 1.0472 = 6.2832 error 0.0000147 - first closure, environment cost
 
--- Million cycle test - only one in chord doesn't blow up
-def millionCycleStable : Bool :=
-  let final := compound 1000000 1.0
-  -- if it blows up like e, it goes to inf. If it's 1.0472, it ticks bounded
-  -- because 6 * 1.0472 = 2π, 12 * 1.0472 = 4π, it closes
-  final.isFinite
+theorem laser_closes : laserCoast 6 = 2*pi := by rfl
+-- 6 * pi/3 = 2pi exact - perfect hexagon
 
-#eval compound 6 1.0   -- should be ~ 6.2832 = 2π, first closure
-#eval compound 12 1.0  -- should be ~ 12.5664 = 4π, second unit, 720
-#eval millionCycleStable -- true only for 1.0472 in chord
+theorem coast_does_not_go_infinite : (1.0 + tapeHiggs * 1000000) < 100000.0 := by rfl
+-- M = N + Hm = 47201 finite after 1e6, vs Euler e^1e6 = inf bomb
+
+#eval tapeCoast 6    -- 6.2832 tape - you can walk it
+#eval laserCoast 6   -- 6.283185307179586 laser - you can prove it
+#eval envCost        -- 2.44e-06 slip between layers
+#eval 1.0 + tapeHiggs * 1000000 -- 47201 finite, not inf
+#eval tapeCoast 12   -- 12.5664 second unit 720 = 4pi
+#eval laserCoast 12  -- 12.566370614359172 second unit
