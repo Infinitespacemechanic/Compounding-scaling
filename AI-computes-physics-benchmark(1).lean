@@ -1,6 +1,6 @@
 -- Coastal Closing - Tape Measure vs Laser Survey
 -- Rob Laakkonen - mechanical Higgs 0.0472
--- There's a fine point on the ruler... a cut off that's productive, predictable, steady
+-- There's a fine point on the ruler... a cutoff that's productive, predictable, steady
 -- This runs 1 million cycles without blowing up
 
 def pi : Float := 3.141592653589793

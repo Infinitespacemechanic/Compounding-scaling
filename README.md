@@ -1,6 +1,6 @@
 # Compounding-scaling
 
-There's a fine point on the ruler...a cut off that's is productive, predictable, and steady..... unlike other compounding choices. This runs 1 million cycles without blowing up! M = N + (π/3 − 1). Additive stays finite. Exponential does not.
+There's a fine point on the ruler...a cutoff that's productive, predictable, and steady..... unlike other compounding choices. This runs 1 million cycles without blowing up! M = N + (π/3 − 1). Additive stays finite. Exponential does not.
 
 ## Coastal Closing - Tape Measure vs Laser Survey - Mechanical Higgs 0.0472
 
