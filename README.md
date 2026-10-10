@@ -32,7 +32,16 @@ There's a fine point on the ruler...a cutoff that's productive, predictable, and
 - `dot-two-three-six-packing-witness.mp4` - Video: dot → chain → triangle → hexagon → graphite two layers → tape measuring coast → 6=2π → 12=4π → M=N+Hm → million cycle stable
 
 ### How to run
-Lean4: `AI-computes-physics-benchmark.lean4`
+Lean4: `CompoundingScaling.lean`
 HTML: `Coastal-Closing-Mechanical-Higgs.html` - tape vs laser interactive
 
 Coastal closes. Euler says infinite. 1.0472 says finite. Tape you can walk with, laser you can prove with.
+
+## Build notes
+The Lean library is `CompoundingScaling.lean`. Build it with the pinned Lean 4.22.0 toolchain and Mathlib v4.22.0:
+
+```sh
+lake build
+```
+
+The theorem `million_step_bound` proves the additive model's bound after 1,000,000 steps.

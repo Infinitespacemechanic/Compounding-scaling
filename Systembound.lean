@@ -62,4 +62,3 @@ theorem zero_feed_death (sys : System)
 -- q ≥ 1 => no promise. Boundedness is not claimed unless you add growth.
 -- i.e. we do NOT have Bounded nor ¬Bounded from q ≥ 1 alone
 -- tape 1.0472 additive M = N + Hm is q=1 bounded by Mcap*n = 47,201 after 1e6 finite
--- Euler N*e^x is q=e/2≥1 multiplicative bomb = inf, no bound

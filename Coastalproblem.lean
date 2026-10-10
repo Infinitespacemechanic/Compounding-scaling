@@ -64,6 +64,3 @@ theorem descend_subtracts_linear (c : Coast) (k : ℕ) (h : k ≤ c.sticks) :
 
 theorem any_heading_same_length (n : ℕ) (d₁ d₂ : Fin 6) :
     Coast.length ⟨n, d₁⟩ = Coast.length ⟨n, d₂⟩ := rfl
-
-/-- The broken version, kept only as a warning label. -/
-def doNotMultiply (steps : ℕ) (slice : ℝ) : ℝ := slice ^ steps

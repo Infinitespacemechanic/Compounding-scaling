@@ -119,7 +119,6 @@ theorem zero_feed_death (sys : System)
 -- BRIDGE: environment has its cost
 -- q ≥ 1 => no promise. Boundedness not claimed unless you add growth.
 -- tape 1.0472 additive M=N+Hm finite 47201 after 1e6
--- Euler N*e^x with q=e/2≥1 bomb inf
 
 #eval (472 : ℚ)/10000
 #eval 1000000 * (472 : ℚ)/10000 + 1
