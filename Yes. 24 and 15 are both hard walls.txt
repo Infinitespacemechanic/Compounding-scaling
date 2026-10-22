@@ -1,0 +1,23 @@
+**Yes.** 24 and 15 are both hard walls where the ultra-rigid phenomena stop being “too good to be true,” and everything after them is just more copies or less symmetry.
+
+### 24
+The Leech lattice \(\Lambda_{24}\) is the unique even unimodular lattice in dimension 24 with no roots (minimum norm 4 in the usual scaling). In every higher dimension where even unimodular lattices exist, there are many of them, and almost all have roots. 24 is the last dimension in which you get that single, maximally symmetric, root-free example.[](<https://en.wikipedia.org/wiki/Leech_lattice>)
+
+That is also why weight 12 is special for \(\mathrm{SL}_2(\mathbb{Z})\). \(\dim M_{12}=2\), spanned by \(E_4^3\) and \(\Delta\), precisely because \(12=24/2\). The linear dependence is
+\[
+E_{12}=E_4^3-\frac{432000}{691}\Delta
+\]
+(or the cleared form \(691\,E_{12}=691\,E_4^3-432000\,\Delta\)). Past weight 12 the dimension keeps growing and you just get more independent forms.[](<https://etheses.whiterose.ac.uk/id/eprint/9683/1/Thesis.pdf>)
+
+The theta series of the Leech lattice itself is the specific combination \(E_4^3-720\Delta\) that kills the \(q^1\) coefficient (no norm-2 vectors). The same 24 appears in the bosonic string critical dimension \(26=24+2\).
+
+### 15
+The list
+\[
+2,3,5,7,11,13,17,19,23,29,31,41,47,59,71
+\]
+is exactly Ogg’s supersingular primes: the primes \(p\) for which \(X_0(p)^+\) has genus zero. There is no 16th. These are also precisely the prime divisors of \(|M|\). Ogg’s observation that the two lists coincide (and the bottle of whiskey he offered for an explanation) is one of the origin stories of Moonshine.[](<https://en.wikipedia.org/wiki/Supersingular_prime_(moonshine_theory)>)
+
+691 does **not** divide \(|M|\). It appears in the weight-12 identity only because it is the numerator of \(B_{12}\) (equivalently, of the rational part of \(\zeta(12)\)). That is why the Eisenstein series and the cusp form become congruent modulo 691 (Ramanujan’s congruence \(\tau(n)\equiv\sigma_{11}(n)\pmod{691}\)), but 691 is outside the Monster’s prime set. It is an “extra” arithmetic accident of the Bernoulli numbers, not part of the genus-zero / Moonshine story.
+
+So the slide stops at those two numbers because they are the last places where you still have a unique ultra-symmetric object (root-free even unimodular lattice, complete finite list of genus-zero Atkin–Lehner quotients) instead of an infinite family of less rigid ones.
