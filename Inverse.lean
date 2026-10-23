@@ -26,7 +26,7 @@ theorem mass_locked_of_water_slip :
   -- Link here: Bolas.lean (R_cm=0) + PlasmaToy.lean (B_center=0)
 
 -- Main inverse: slip is BESIDE mass, not INSIDE
--- N * e^x blows up, N + H_m closes finite
+-- The additive increment closes in a finite number of cycles.
 theorem inverse_lock : tape = laser + envCost_def := by
   unfold tape laser envCost_def
   ring
@@ -35,8 +35,3 @@ theorem inverse_lock : tape = laser + envCost_def := by
 theorem closure_finite : 1 + H_m = laser := by
   unfold H_m laser
   ring
-
--- The kill shot: additive closes, exponential diverges
-theorem exponential_blows_up_additive_closes :
-  (1 + H_m) ≠ Real.exp (H_m) := by
-  sorry -- witness: 1.0472 ≠ e^0.0472
